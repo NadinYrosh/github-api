@@ -46,9 +46,5 @@ $(document).ready(function() {
   });
 });
 
-// $(document).ready(function() {
-//   var name = $('#name').val();
-//   $('#name').val("");
-// });
 
 },{"./../.env":1}]},{},[2]);
