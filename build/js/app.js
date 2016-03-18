@@ -11,17 +11,31 @@ $(document).ready(function() {
     var requri   = 'https://api.github.com/users/'+userName;
     var repouri  = 'https://api.github.com/users/'+userName+'/repos';
     $('#userName').val("");
-      $.getJSON(requri + userName + '?access_token=' + apiKey + '').then(function(response){
-        $('.showGH').append("Picture" + "<img src=" + response.avatar_url + "/>");
+      $.getJSON(requri + '?access_token=' + apiKey + '').then(function(repo){
+        $('.showGH').append("<img src=" + repo.avatar_url + "/>");
+        console.log(response);
       }).fail(function(error){
         console.log(error.responseJSON.message);
+        console.log("ERRRRRRR");
       });
     $.getJSON(repouri + '?access_token=' + apiKey + '').then(function(repo){
-      console.log(repo);
+      // console.log(repo);
       for (var i = 0; i <= repo.length; i++) {
-        $('.showGH').append(" <Br>Repository: " + repo[i].name);
-        $('.showGH').append(" <Br>Description: " + repo[i].description);
-        $('.showGH').append(" <Br>Languange: " + repo[i].language + "<hr>");
+        if (repo[i].name !== null || repo[i].name !== "") {
+          $('.showGH').append(" <Br>Repository: " + repo[i].name);
+        }else{
+          $('.showGH').append(" <Br>Repository: EMPTY");
+        }
+        if (repo[i].description !== null ||repo[i].description !== "") {
+          $('.showGH').append(" <Br>Description: " + repo[i].description);
+        }else{
+          $('.showGH').append(" <Br>Description: EMPTY");
+        }
+        if (repo[i].description !== null) {
+          $('.showGH').append(" <Br>Languange: " + repo[i].language + "<hr>");
+        }else{
+          $('.showGH').append(" <Br>Languange: NONE <hr>");
+        }
       }
     }).fail(function(error){
       console.log(error.responseJSON.message);
