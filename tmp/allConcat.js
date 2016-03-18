@@ -7,7 +7,7 @@ $(document).ready(function() {
     var requri   = 'https://api.github.com/users/'+userName;
     var repouri  = 'https://api.github.com/users/'+userName+'/repos';
     $('#userName').val("");
-      $.getJSON(requri + '?access_token=' + apiKey + '').then(function(response){
+      $.getJSON(requri + '?access_token=' + apiKey + '&per_page=1000').then(function(response){
         $('.showGH').append("<img src=" + response.avatar_url + "/>");
         $('.showGH').append("<p>" +"UserName: " + userName+ "</p>");
         $('.showGH').append("<p>" +"FullName: " + response.name + "</p>");
@@ -17,7 +17,7 @@ $(document).ready(function() {
         console.log(error.responseJSON.message);
         console.log("ERRRRRRR");
       });
-    $.getJSON(repouri + '?access_token=' + apiKey + '').then(function(repo){
+    $.getJSON(repouri + '?access_token=' + apiKey + '&per_page=1000').then(function(repo){
       // console.log(repo);
       for (var i = 0; i <= repo.length; i++) {
         if (repo[i].name !== null || repo[i].name !== "") {
@@ -53,4 +53,3 @@ $(document).ready(function() {
 
 
 //I need to split up my ui logic to have functions/methods in multile files so that it is more readible ? spelling
-// break time
