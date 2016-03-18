@@ -5,17 +5,29 @@ exports.apiKey = "01faa787b1664971f9d6e5fe64aec7ba8e143a4b";
 var apiKey = require('./../.env').apiKey;
 
 $(document).ready(function() {
-  $('#button').click(function() {
+  $('#button').click(function(e) {
+    e.preventDefault();
     var userName = $('#userName').val();
-    console.log(userName);
+    var requri   = 'https://api.github.com/users/'+userName;
+    var repouri  = 'https://api.github.com/users/'+userName+'/repos';
     $('#userName').val("");
-      $.get('https://api.github.com/users/' + userName + '?access_token=' + apiKey + '').then(function(response){
-        console.log(response);
+      $.getJSON(requri + userName + '?access_token=' + apiKey + '').then(function(response){
+        $('.showGH').append("Picture" + "<img src=" + response.avatar_url + "/>");
       }).fail(function(error){
         console.log(error.responseJSON.message);
       });
-      console.log(JSON.stringify(response));
-      $('.showGH').text(userName + ":");
+    $.getJSON(repouri + '?access_token=' + apiKey + '').then(function(repo){
+      console.log(repo);
+      for (var i = 0; i <= repo.length; i++) {
+        $('.showGH').append(" <Br>Repository: " + repo[i].name);
+        $('.showGH').append(" <Br>Description: " + repo[i].description);
+        $('.showGH').append(" <Br>Languange: " + repo[i].language + "<hr>");
+      }
+    }).fail(function(error){
+      console.log(error.responseJSON.message);
+    });
+      $('.showGH').append("UserName: " + userName);
+      $('.showGH').append("<br>" + "<p>" +"FullName: " + "fullName" + "</p>");
   });
 });
 
