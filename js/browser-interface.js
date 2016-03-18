@@ -7,8 +7,11 @@ $(document).ready(function() {
     var requri   = 'https://api.github.com/users/'+userName;
     var repouri  = 'https://api.github.com/users/'+userName+'/repos';
     $('#userName').val("");
-      $.getJSON(requri + '?access_token=' + apiKey + '').then(function(repo){
-        $('.showGH').append("<img src=" + repo.avatar_url + "/>");
+      $.getJSON(requri + '?access_token=' + apiKey + '').then(function(response){
+        $('.showGH').append("<img src=" + response.avatar_url + "/>");
+        $('.showGH').append("<p>" +"UserName: " + userName+ "</p>");
+        $('.showGH').append("<p>" +"FullName: " + response.name + "</p>");
+        $('.showGH').append("<p>" +"Location: " + response.location+ "</p>");
         console.log(response);
       }).fail(function(error){
         console.log(error.responseJSON.message);
@@ -36,7 +39,5 @@ $(document).ready(function() {
     }).fail(function(error){
       console.log(error.responseJSON.message);
     });
-      $('.showGH').append("UserName: " + userName);
-      $('.showGH').append("<br>" + "<p>" +"FullName: " + "fullName" + "</p>");
   });
 });
