@@ -77,7 +77,7 @@ gulp.task('serve', function() {
   browserSync.init({
     server: {
       baseDir: "./",
-      index: "hello.html"
+      index: "index.html"
     }
   });
 
