@@ -19,25 +19,27 @@ exports.getRepos = function(username){
         $('.showGH').append("<p>" +"UserName: " + userName+ "</p>");
         $('.showGH').append("<p>" +"FullName: " + response.name + "</p>");
         $('.showGH').append("<p>" +"Location: " + response.location+ "</p>");
-        console.log(response);
+        // console.log(response);
       }).fail(function(error){
         console.log(error.responseJSON.message);
-        console.log("ERRRRRRR");
+        console.log("error from requir");
       });
     $.getJSON(repouri + '?access_token=' + apiKey + '&per_page=30').then(function(repo){
-      // console.log(repo);
+      console.log(repo);
       for (var i = 0; i <= repo.length; i++) {
-        if (repo[i].name !== null || repo[i].name !== "") {
-          $('.showGH').append(" <Br>Repository: " + repo[i].name);
-        }else{
+        // console.log(repo[i].description);
+        if (repo[i].name === "") {
           $('.showGH').append(" <Br>Repository: EMPTY");
-        }
-        if (repo[i].description !== null ||repo[i].description !== "") {
-          $('.showGH').append(" <Br>Description: " + repo[i].description);
         }else{
-          $('.showGH').append(" <Br>Description: EMPTY");
+          $('.showGH').append("<Br>Repository: " +
+          "<a href=" + "https://github.com/'+userName" + "/" + "repo[i].name" + ">" + repo[i].name + "</a>");
         }
-        if (repo[i].description !== null) {
+        if (repo[i].description === "") {
+          $('.showGH').append(" <Br>Description: No description provided.");
+        }else{
+          $('.showGH').append(" <Br>Description: " + repo[i].description);
+        }
+        if (repo[i].language !== "") {
           $('.showGH').append(" <Br>Languange: " + repo[i].language + "<hr>");
         }else{
           $('.showGH').append(" <Br>Languange: NONE <hr>");
