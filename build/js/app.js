@@ -32,7 +32,7 @@ exports.getRepos = function(username){
           $('.showGH').append(" <Br>Repository: EMPTY");
         }else{
           $('.showGH').append("<Br>Repository: " +
-          "<a href=" + "https://github.com/'+userName" + "/" + "repo[i].name" + ">" + repo[i].name + "</a>");
+          "<a href=" + "https://github.com/" + userName + "/" + repo[i].name + ">" + repo[i].name + "</a>");
         }
         if (repo[i].description === "") {
           $('.showGH').append(" <Br>Description: No description provided.");
