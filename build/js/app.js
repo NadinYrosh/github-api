@@ -10,8 +10,6 @@ exports.clearPage = function() {
 var apiKey = require('./../.env').apiKey;
 
 exports.getRepos = function(username){
-  $('#button').click(function(e) {
-    e.preventDefault();
     var userName = $('#userName').val();
     var requri   = 'https://api.github.com/users/'+userName;
     var repouri  = 'https://api.github.com/users/'+userName+'/repos';
@@ -48,7 +46,6 @@ exports.getRepos = function(username){
     }).fail(function(error){
       console.log(error.responseJSON.message);
     }); //repo error
-  }); //click function
 }; //get repos function
 
 },{"./../.env":1}],4:[function(require,module,exports){
