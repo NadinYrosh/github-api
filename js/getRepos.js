@@ -1,12 +1,3 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-exports.apiKey = "2481cfbb1a229cc7c4c86af0ce27de4fb575aaa9";
-
-},{}],2:[function(require,module,exports){
-exports.clearPage = function() {
-  $('.showGH').text("");
-};//clear
-
-},{}],3:[function(require,module,exports){
 var apiKey = require('./../.env').apiKey;
 
 exports.getRepos = function(username){
@@ -50,18 +41,3 @@ exports.getRepos = function(username){
     }); //repo error
   }); //click function
 }; //get repos function
-
-},{"./../.env":1}],4:[function(require,module,exports){
-var getRepos = require('./../js/getRepos.js').getRepos;
-var clearPage = require('./../js/clearPage.js').clearPage;
-
-$(document).ready(function(){
-  $("#button").click(function() {
-    getRepos($("#userName").val());
-  });
-  $(".clear").click(function() {
-    clearPage();
-  });
-});//doc ready
-
-},{"./../js/clearPage.js":2,"./../js/getRepos.js":3}]},{},[4]);
