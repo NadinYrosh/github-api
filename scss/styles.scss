@@ -1,0 +1,17 @@
+$bluish : #4EACBA;
+
+body {
+  background: $bluish;
+  padding: 40px 80px;
+  button {
+    font-weight: bold;
+    text-align: center;
+    background-color: black;
+    color: white;
+  }
+  img {
+    height: 150px;
+    width: 150px;
+    margin-top: 20px;
+  }
+}
